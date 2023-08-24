@@ -9,24 +9,17 @@ import { credentials } from "./credentials.js";
 
 const url = `https://sheets.googleapis.com/v4/spreadsheets/${credentials.spreadsheetId}/values/${credentials.range}?alt=json&key=${credentials.apiKey}`;
 
-/**
- *  get data
- * */
-// async function fetchRestaurantData(url) {
-//   const data = await fetch(url)
-//     .then((response) => response.json())
-//     .then((data) => console.log(data));
-//   return data;
-// }
-
-// export { fetchRestaurantData };
-
 export function useRestaurantData() {
   const [restaurants, setRestaurants] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   useEffect(function () {
+    const controller = new AbortController();
     async function fetchRestaurants() {
       try {
-        const res = await fetch(url);
+        setIsLoading(true);
+        setError("");
+        const res = await fetch(url, { signal: controller.signal });
         if (!res.ok)
           throw new Error("Something went wrong with fetching restaurants");
 
@@ -34,10 +27,33 @@ export function useRestaurantData() {
         if (data.Response === "False") {
           throw new Error("Restaurant data not found");
         }
-        setRestaurants(data.values);
-      } catch (err) {}
+        const restaurantData = data.values.slice(1);
+        let values = {};
+        restaurantData.map((value, i) => {
+          values[i] = {
+            name: value[0],
+            menuUrl: value[1],
+            neighborhood: value[2],
+            address: value[3],
+            cuisine: value[4],
+            keywords: value[5],
+            vegan: value[6],
+          };
+        });
+        setRestaurants(values);
+        setError("");
+      } catch (err) {
+        if (err.name !== "AbortError") {
+          setError(err.message);
+        }
+      } finally {
+        setIsLoading(false);
+      }
     }
     fetchRestaurants();
+    return function () {
+      controller.abort();
+    };
   }, []);
-  return { restaurants };
+  return { restaurants, isLoading, error };
 }
