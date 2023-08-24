@@ -1,14 +1,15 @@
 import "./App.css";
-import { useRestaurantData } from "./apis/useRestaurantData";
+//import { useRestaurantData } from "./apis/useRestaurantData";
 import FilterSelect from "./components/FilterSelect";
 import Button from "./components/Button";
 import Restaurant from "./components/Restaurant";
 import { useEffect } from "react";
+import restaurants from "./apis/restaurants.json";
 
 function App() {
-  const { restaurants, isLoading, error } = useRestaurantData();
+  //const { restaurants, isLoading, error } = useRestaurantData();
 
-  isLoading ? console.log("loading") : console.log(restaurants[0].name);
+  console.log(restaurants[1].name);
 
   return (
     <div className="App">

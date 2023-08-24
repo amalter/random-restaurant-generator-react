@@ -29,7 +29,7 @@ export function useRestaurantData() {
         }
         const restaurantData = data.values.slice(1);
         let values = {};
-        restaurantData.map((value, i) => {
+        restaurantData?.map((value, i) => {
           values[i] = {
             name: value[0],
             menuUrl: value[1],
