@@ -1,6 +1,6 @@
 import "./App.css";
 //import { useRestaurantData } from "./hooks/useRestaurantData";
-import FilterSelect from "./components/FilterSelect";
+import FilterSelect from "./components/FilterForm";
 import Button from "./components/Button";
 import Restaurant from "./components/Restaurant";
 import { useEffect } from "react";
