@@ -5,14 +5,22 @@ export default function Checkbox({
   checkboxClass,
   checkboxName,
   checkboxId,
-  selectAll,
-  setSelectAll,
 }) {
-  const [checked, setChecked] = useState(true);
-  const isChecked = selectAll ? true : !checked;
-  function handleCheck() {
-    setSelectAll(false);
-    setChecked((check) => !check);
+  const [selectAll, setSelectAll] = useState(false);
+
+  const [checked, setChecked] = useState(false);
+  // const isChecked = selectAll ? true : !checked;
+
+  function handleCheck(e) {
+    setChecked(!checked);
+    if (e.target.id === "all") {
+      console.log("all");
+      setSelectAll(!selectAll);
+      setChecked(!checked);
+    } else {
+      console.log("else");
+      setSelectAll(false);
+    }
   }
   useEffect(
     function () {
@@ -31,8 +39,8 @@ export default function Checkbox({
         type="checkbox"
         id={checkboxId}
         name={checkboxName}
-        checked={isChecked}
-        onChange={handleCheck}
+        checked={checked}
+        onChange={(e) => handleCheck(e)}
       />
       <label htmlFor={checkboxName}>{checkboxName}</label>
     </div>
