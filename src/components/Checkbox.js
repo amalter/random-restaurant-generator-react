@@ -1,19 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Checkbox({
   fieldsetClass,
   checkboxClass,
   checkboxName,
   checkboxId,
-  // checked,
   selectAll,
   setSelectAll,
 }) {
   const [checked, setChecked] = useState(true);
+  const isChecked = selectAll ? true : !checked;
   function handleCheck() {
     setSelectAll(false);
     setChecked((check) => !check);
   }
+  useEffect(
+    function () {
+      if (selectAll) {
+        setChecked(false);
+        setChecked(true);
+      }
+    },
+    [selectAll]
+  );
+
   return (
     <div className={`${fieldsetClass}__field`}>
       <input
@@ -21,10 +31,10 @@ export default function Checkbox({
         type="checkbox"
         id={checkboxId}
         name={checkboxName}
-        checked={selectAll ? true : !checked}
+        checked={isChecked}
         onChange={handleCheck}
       />
-      <label for={checkboxName}>{checkboxName}</label>
+      <label htmlFor={checkboxName}>{checkboxName}</label>
     </div>
   );
 }

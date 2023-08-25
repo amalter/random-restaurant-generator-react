@@ -2,11 +2,9 @@ import { useState } from "react";
 import Checkbox from "./Checkbox";
 export default function Fieldset({ category, fieldsetClass, legend, inputs }) {
   const [selectAll, setSelectAll] = useState(true);
-  // const [checked, setChecked] = useState(true);
 
   function handleSelectAll() {
-    setSelectAll((check) => !check);
-    //   setChecked(() => (!selectAll ? true : false));
+    setSelectAll((select) => !select);
   }
 
   return (
@@ -21,7 +19,7 @@ export default function Fieldset({ category, fieldsetClass, legend, inputs }) {
           checked={selectAll}
           onChange={handleSelectAll}
         />
-        <label for="All">Select All</label>
+        <label htmlFor="All">Select All</label>
       </div>
       {inputs.map((input) => (
         <Checkbox
@@ -32,7 +30,6 @@ export default function Fieldset({ category, fieldsetClass, legend, inputs }) {
           checkboxId={input.id}
           selectAll={selectAll}
           setSelectAll={setSelectAll}
-          // checked={checked}
         />
       ))}
     </fieldset>
