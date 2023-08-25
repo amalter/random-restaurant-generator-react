@@ -1,3 +1,8 @@
 export default function Button() {
-  return <button>Generate Random Restaurant</button>;
+  return (
+    <button className="random-restaurant_btn">
+      {" "}
+      Generate Random Restaurant
+    </button>
+  );
 }

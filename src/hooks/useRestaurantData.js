@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { credentials } from "./credentials.js";
+import { credentials } from "../apis/credentials.js";
 /**
  *
  * Gets restaurant data from googlesheets

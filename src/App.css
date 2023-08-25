@@ -1,38 +1,179 @@
-.App {
-  text-align: center;
+/**
+
+App styles using vanilla CSS
+
+*/
+
+/* Font settings  
+========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Trirong", serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  font-family: "Noto Sans", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+a {
+  color: 003d3f;
 }
 
-.App-header {
-  background-color: #282c34;
+/* Layout settings  
+========================================================================== */
+.main {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  background: #c6f1f4;
+}
+
+.main_heading,
+.main_footer {
+  padding: 2em 1em;
+}
+
+.main_heading-title,
+.main_heading-description {
+  text-align: center;
+  padding: 0 1em;
+  color: #006d72;
+}
+.main_content {
+  width: 100%;
+  margin: auto;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  overflow: hidden;
+}
+@media only screen and (min-width: 900px) {
+  .main_content {
+    max-width: 900px;
+    flex-direction: column;
+    flex-direction: row;
+    align-items: stretch;
+  }
 }
 
-.App-link {
-  color: #61dafb;
+/*Form Styles*/
+
+.filter-form {
+  width: 100%;
+  padding: 2em;
+  background: #f2f4f4;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+#restaurant-filter_form {
+  display: flex;
+  flex-direction: column;
+  max-width: 450px;
+  margin: auto;
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filters_fieldset {
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.filters_fieldset__field {
+  margin: 10px 10px 10px 0;
+}
+
+.filters_fieldset legend {
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 900px) {
+  .filter-form {
+    width: 50%;
   }
-  to {
-    transform: rotate(360deg);
+  .filters {
+    flex-direction: row;
   }
+
+  .filters_fieldset {
+    display: block;
+  }
+}
+
+.random-restaurant_btn {
+  border: solid #006d72 3px;
+  background: #006d72;
+  color: #fff;
+  border-radius: 5px;
+  padding: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.random-restaurant_btn:hover {
+  background: #002d2d;
+}
+/* Checkbox styles */
+input[type="checkbox"] {
+  accent-color: #006d72;
+}
+
+.message-alert {
+  color: #c40000;
+  margin: 1em 0;
+}
+/*Random Restaurant section*/
+.random-restaurant-section {
+  display: flex;
+  flex-direction: column;
+  padding: 2em;
+  width: 100%;
+  max-width: 400px;
+}
+
+#random-restaurant {
+  padding: 0 1em;
+  transition: opacity 0.3s ease-in-out;
+}
+
+@media only screen and (min-width: 900px) {
+  .random-restaurant-section {
+    width: 50%;
+  }
+  #random-restaurant {
+    padding: 0;
+  }
+}
+
+.random-restaurant_details {
+  list-style: none;
+  padding-left: 1em;
+  line-height: 1.5;
+}
+
+.random-restaurant_details svg {
+  width: 10px;
+}
+
+/* Footer styles */
+.main_footer {
+  display: flex;
+  margin-top: auto;
+  padding: 1em;
+  text-align: center;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.git-hub-logo {
+  width: 30px;
 }
