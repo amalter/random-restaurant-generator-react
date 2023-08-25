@@ -1,11 +1,6 @@
 export const inputs = {
   neighborhoods: [
     {
-      name: "Select All",
-      id: "all",
-      class: "neighborhood",
-    },
-    {
       name: "Ballard",
       id: "ballard",
       class: "neighborhood",
@@ -42,11 +37,6 @@ export const inputs = {
     },
   ],
   cuisines: [
-    {
-      name: "Select All",
-      id: "all",
-      class: "cuisine",
-    },
     {
       name: "American Comfort",
       id: "american-comfort",

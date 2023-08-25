@@ -9,13 +9,13 @@ export default function FilterSelect() {
       <form action="" method="get" id="restaurant-filter_form">
         <div className="filters">
           <Fieldset
-            category={"neighborhoods"}
+            category={"neighborhood"}
             fieldsetClass={"filters_fieldset"}
             legend={"Neighborhood"}
             inputs={inputs.neighborhoods}
           />
           <Fieldset
-            category={"cuisines"}
+            category={"cuisine"}
             fieldsetClass={"filters_fieldset"}
             legend={"Cuisine"}
             inputs={inputs.cuisines}
