@@ -15,6 +15,7 @@ export default function Checkbox({
         name={checkboxName}
         checked={isChecked}
         onChange={onChange}
+        value={checkboxName}
       />
       <label htmlFor={checkboxName}>{checkboxName}</label>
     </div>

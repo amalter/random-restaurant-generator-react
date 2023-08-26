@@ -1,23 +1,43 @@
 import { useState } from "react";
 import Checkbox from "./Checkbox";
 
-export default function Fieldset({ category, fieldsetClass, legend, inputs }) {
+export default function Fieldset({
+  category,
+  fieldsetClass,
+  legend,
+  inputs,
+  selectedCheckboxes,
+  setSelectedCheckboxes,
+}) {
+  const initialCheckboxes = inputs.map((input) => input.name);
   const [isCheckAll, setIsCheckAll] = useState(false);
   const [isCheck, setIsCheck] = useState([]);
-
   const handleSelectAll = (e) => {
     setIsCheckAll(!isCheckAll);
     setIsCheck(inputs.map((li) => li.id));
     if (isCheckAll) {
       setIsCheck([]);
     }
+    if (e.target.checked) {
+      setSelectedCheckboxes(initialCheckboxes);
+    } else {
+      setSelectedCheckboxes([]);
+    }
   };
 
   const handleClick = (e) => {
     const { id, checked } = e.target;
+    const checkboxValue = e.target.value;
     setIsCheck([...isCheck, id]);
     if (!checked) {
       setIsCheck(isCheck.filter((item) => item !== id));
+    }
+    if (checked) {
+      setSelectedCheckboxes([...selectedCheckboxes, checkboxValue]);
+    } else {
+      setSelectedCheckboxes(
+        selectedCheckboxes.filter((value) => value !== checkboxValue)
+      );
     }
   };
   return (
