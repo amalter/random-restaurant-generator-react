@@ -26,20 +26,36 @@ export default function Fieldset({
   };
 
   const handleClick = (e) => {
-    const { id, checked } = e.target;
+    const { id, checked, className } = e.target;
     const checkboxValue = e.target.value;
+
     setIsCheck([...isCheck, id]);
+
     if (!checked) {
       setIsCheck(isCheck.filter((item) => item !== id));
     }
-    if (checked) {
-      setSelectedCheckboxes([...selectedCheckboxes, checkboxValue]);
-    } else {
-      setSelectedCheckboxes(
-        selectedCheckboxes.filter((value) => value !== checkboxValue)
-      );
-    }
+
+    setSelectedCheckboxes((prevSelected) => {
+      const updatedSelected = { ...prevSelected };
+
+      if (checked) {
+        if (updatedSelected[className]) {
+          updatedSelected[className].push(checkboxValue);
+        } else {
+          updatedSelected[className] = [checkboxValue];
+        }
+      } else {
+        if (updatedSelected[className]) {
+          updatedSelected[className] = updatedSelected[className].filter(
+            (value) => value !== checkboxValue
+          );
+        }
+      }
+
+      return updatedSelected;
+    });
   };
+
   return (
     <fieldset className={`${fieldsetClass} ${category}s`} key={category}>
       <legend>{legend}:</legend>
