@@ -1,12 +1,11 @@
 import "./App.css";
-//import { useRestaurantData } from "./hooks/useRestaurantData";
+import { useRestaurantData } from "./hooks/useRestaurantData";
 import FilterForm from "./components/FilterForm";
 import Restaurant from "./components/Restaurant";
 import { useState } from "react";
-import restaurants from "./apis/restaurants.json";
 
 function App() {
-  //const { restaurants, isLoading, error } = useRestaurantData();
+  const { restaurants, isLoading, error } = useRestaurantData();
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
   const [randomRestaurant, setRandomRestaurant] = useState({});
 

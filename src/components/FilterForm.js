@@ -3,13 +3,15 @@ import { inputs } from "../apis/inputs";
 
 import Fieldset from "./Fieldset";
 
-function getRandomRestaurant(restaurants, filters) {
+function getRandomRestaurant(restaurantsObj, filters) {
   if (Object.keys(filters).length === 0) {
     return;
   }
 
+  const restaurantsArray = Object.values(restaurantsObj); // Convert object to array
+
   // Apply filters to the restaurants
-  const filteredRestaurants = restaurants.filter((restaurant) => {
+  const filteredRestaurants = restaurantsArray.filter((restaurant) => {
     return (
       (filters.cuisine === undefined ||
         filters.cuisine.includes(restaurant.cuisine)) &&
@@ -34,6 +36,8 @@ export default function FilterForm({
   restaurants,
   randomRestaurant,
   setRandomRestaurant,
+  isLoading,
+  error,
 }) {
   function handleSubmit(e) {
     e.preventDefault();

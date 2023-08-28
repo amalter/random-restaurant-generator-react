@@ -32,9 +32,9 @@ export function useRestaurantData() {
         restaurantData?.map((value, i) => {
           values[i] = {
             name: value[0],
-            menuUrl: value[1],
+            website: value[1],
             neighborhood: value[2],
-            address: value[3],
+            gmaps: value[3],
             cuisine: value[4],
             keywords: value[5],
             vegan: value[6],
