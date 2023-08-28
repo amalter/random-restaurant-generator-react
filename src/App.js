@@ -1,13 +1,14 @@
 import "./App.css";
 //import { useRestaurantData } from "./hooks/useRestaurantData";
-import FilterSelect from "./components/FilterForm";
-import Button from "./components/Button";
+import FilterForm from "./components/FilterForm";
 import Restaurant from "./components/Restaurant";
-import { useEffect } from "react";
+import { useState } from "react";
 import restaurants from "./apis/restaurants.json";
 
 function App() {
   //const { restaurants, isLoading, error } = useRestaurantData();
+  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+  const [randomRestaurant, setRandomRestaurant] = useState({});
 
   return (
     <div className="App">
@@ -18,8 +19,14 @@ function App() {
         </p>
       </header>
       <section className="main_content">
-        <FilterSelect />
-        <Restaurant restaurants={restaurants} />
+        <FilterForm
+          selectedCheckboxes={selectedCheckboxes}
+          setSelectedCheckboxes={setSelectedCheckboxes}
+          restaurants={restaurants}
+          randomRestaurant={randomRestaurant}
+          setRandomRestaurant={setRandomRestaurant}
+        />
+        <Restaurant restaurant={randomRestaurant} />
       </section>
       <footer className="main_footer">
         <div id="copyright">&copy; Amber Alter</div>

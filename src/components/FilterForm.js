@@ -1,15 +1,43 @@
-import { useEffect, useState } from "react";
 import Button from "./Button";
 import { inputs } from "../apis/inputs";
 
 import Fieldset from "./Fieldset";
 
-export default function FilterSelect() {
-  const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
+function getRandomRestaurant(restaurants, filters) {
+  if (Object.keys(filters).length === 0) {
+    return;
+  }
+
+  // Apply filters to the restaurants
+  const filteredRestaurants = restaurants.filter((restaurant) => {
+    return (
+      (filters.cuisine === undefined ||
+        filters.cuisine.includes(restaurant.cuisine)) &&
+      (filters.neighborhood === undefined ||
+        filters.neighborhood.includes(restaurant.neighborhood))
+    );
+  });
+
+  if (filteredRestaurants.length === 0) {
+    return "try again";
+  }
+
+  // Select a random restaurant from the filtered list
+  const randomIndex = Math.floor(Math.random() * filteredRestaurants.length);
+
+  return filteredRestaurants[randomIndex];
+}
+
+export default function FilterForm({
+  selectedCheckboxes,
+  setSelectedCheckboxes,
+  restaurants,
+  randomRestaurant,
+  setRandomRestaurant,
+}) {
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(selectedCheckboxes);
-    // console.log(e.target);
+    setRandomRestaurant(getRandomRestaurant(restaurants, selectedCheckboxes));
   }
   return (
     <section className="filter-form">
