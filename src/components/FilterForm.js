@@ -6,10 +6,6 @@ import Fieldset from "./Fieldset";
 
 export default function FilterSelect() {
   const [selectedCheckboxes, setSelectedCheckboxes] = useState([]);
-  // const allNeighborhoods = inputs.neighborhoods.map(
-  //   (neighborhood) => neighborhood.id
-  // );
-  const allCuisines = inputs.cuisines.map((cuisine) => cuisine.id);
   function handleSubmit(e) {
     e.preventDefault();
     console.log(selectedCheckboxes);

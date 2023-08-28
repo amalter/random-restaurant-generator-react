@@ -19,9 +19,21 @@ export default function Fieldset({
       setIsCheck([]);
     }
     if (e.target.checked) {
-      setSelectedCheckboxes(initialCheckboxes);
+      setSelectedCheckboxes((prevSelected) => {
+        const updatedSelected = {
+          ...prevSelected,
+          [category]: initialCheckboxes,
+        };
+
+        return updatedSelected;
+      });
     } else {
-      setSelectedCheckboxes([]);
+      // setSelectedCheckboxes([]);
+      setSelectedCheckboxes((prevSelected) => {
+        const updatedSelected = { ...prevSelected };
+        delete updatedSelected[category]; // Remove the array for the category
+        return updatedSelected;
+      });
     }
   };
 
