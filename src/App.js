@@ -30,7 +30,7 @@ function App() {
       <footer className="main_footer">
         <div id="copyright">&copy; Amber Alter</div>
         <div className="source">
-          <a href="https://github.com/amalter/random-restaurant-generator-vanilla">
+          <a href="https://github.com/amalter/random-restaurant-generator-react">
             View source code on GitHub
             <img
               className="git-hub-logo"

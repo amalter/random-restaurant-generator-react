@@ -1,4 +1,3 @@
-import Button from "./Button";
 import { inputs } from "../apis/inputs";
 
 import Fieldset from "./Fieldset";
@@ -69,9 +68,15 @@ export default function FilterForm({
             setSelectedCheckboxes={setSelectedCheckboxes}
           />
         </div>
+        {Object.keys(selectedCheckboxes).length === 0 ? (
+          <div className="message-alert">Make a selection</div>
+        ) : (
+          ""
+        )}
 
-        <div className="message-alert"></div>
-        <Button />
+        <button className="random-restaurant_btn">
+          Generate Random Restaurant
+        </button>
       </form>
     </section>
   );
